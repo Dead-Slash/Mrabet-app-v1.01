@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCaisse1 } from "../Redux/Actions/Caisse1_Action";
+import { getLiquide, updateLiquide } from "../Redux/Actions/Liquide_action";
 
 const Modal1 = ({ caisse }) => {
   const [show, setShow] = useState(false);
@@ -22,6 +23,11 @@ const Modal1 = ({ caisse }) => {
 
   const disptach = useDispatch();
 
+  useEffect(() => {
+    disptach(getLiquide());
+  }, [disptach]);
+
+  const Liquide = useSelector((state) => state.Liquide.liquide);
   const Caisses = useSelector((state) => state.caisses1.caisses);
 
   const Cheques = Caisses.find((e) => e._id === caisse._id).Cheques;
@@ -35,11 +41,14 @@ const Modal1 = ({ caisse }) => {
       TPEs: [...caisse.TPEs],
     };
 
-    disptach(updateCaisse1(caisse._id, updatedCaisse))
-      .then(() => {
-        handleClose();
+    disptach(updateCaisse1(caisse._id, updatedCaisse));
+    disptach(
+      updateLiquide(Liquide[0]._id, {
+        LiquideDisponible:
+          Number(Liquide[0].LiquideDisponible) + Number(montantLiquide),
       })
-      .catch((error) => {});
+    );
+    handleClose();
   };
 
   const handleSingleCheque = () => {

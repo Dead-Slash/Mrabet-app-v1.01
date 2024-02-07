@@ -5,14 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { CardText, Row } from "react-bootstrap";
 import ModalEvent from "./ModalEvent";
 import { getCaissesEvent } from "../Redux/Actions/CaisseEvent_Actions";
+import { getCurrent } from "../Redux/Actions/Users_Action";
 
 function CaisseEvent(caisse) {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCaissesEvent());
+    dispatch(getCaissesEvent(), getCurrent());
   }, [dispatch]);
 
   const Caisses = useSelector((state) => state.caissesEvent.caisses);
+  const user = useSelector((state) => state.users.user);
 
   return (
     <>
@@ -231,7 +233,7 @@ function CaisseEvent(caisse) {
                   </Accordion>
                 </div>
               )}
-              <ModalEvent caisse={caisse} />
+              {user.Role === "User" ? null : <ModalEvent caisse={caisse} />}
             </Card.Body>
           </Card>
         ))}

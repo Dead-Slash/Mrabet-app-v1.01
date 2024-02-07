@@ -11,7 +11,7 @@ export const Users_reducer = (state = initialState, { type, payload }) => {
       localStorage.removeItem("Token");
       return { ...state, user: {} };
     case GETCURRENT:
-      localStorage.setItem();
+      return { ...state, user: payload.user };
     default:
       return state;
   }

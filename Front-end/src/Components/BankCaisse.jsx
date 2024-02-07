@@ -4,14 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { CardText, Row } from "react-bootstrap";
 import { getBank_Caisses } from "../Redux/Actions/Bank_Caisses_Action";
 import BankCaisseModal from "./BankCaisseModal";
+import { getCurrent } from "../Redux/Actions/Users_Action";
 
 function BankCaisse() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getBank_Caisses());
+    dispatch(getBank_Caisses(), getCurrent());
   }, [dispatch]);
 
   const Caisses = useSelector((state) => state.BankCaisses.BankCaisses);
+  const user = useSelector((state) => state.users.user);
 
   return (
     <>
@@ -82,7 +84,9 @@ function BankCaisse() {
                   {caisse.Motif}
                 </CardText>
               </div>
-              <BankCaisseModal caisse={caisse} />
+              {user.Role === "User" ? null : (
+                <BankCaisseModal caisse={caisse} />
+              )}
             </Card.Body>
           </Card>
         ))}

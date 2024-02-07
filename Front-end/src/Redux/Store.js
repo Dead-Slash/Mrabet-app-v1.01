@@ -7,6 +7,8 @@ import { CaissesEvent_reducer } from "./Reducers/CaisseEvent_reducer";
 import { Products_reducer } from "./Reducers/Achat_reducer";
 import { BankCaisses_reducer } from "./Reducers/Bank_caisse_Reducer";
 import { errorReducer } from "./Reducers/ReducerError";
+import { LiquideReducer } from "./Reducers/Liquide_Reducer";
+import { History_reducer } from "./Reducers/History_reducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
@@ -16,6 +18,8 @@ const rootReducer = combineReducers({
   caissesEvent: CaissesEvent_reducer,
   Products: Products_reducer,
   BankCaisses: BankCaisses_reducer,
+  Liquide: LiquideReducer,
+  history: History_reducer,
 
   // houni Nzidou li reducer
 });

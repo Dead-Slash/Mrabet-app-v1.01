@@ -41,7 +41,9 @@ exports.Login = async (req, res) => {
         res.status(400).send({ errors: [{ msg: "mot de passe incorrect!!" }] });
       } else {
         const SecretKey = "160592050199271021";
-        const Token = jwt.sign({ id: found._id }, SecretKey);
+        const Token = jwt.sign({ id: found._id }, SecretKey, {
+          expiresIn: "12h",
+        });
         res
           .status(200)
           .send({ msg: "Connecté avec succès!!", User: found, Token });

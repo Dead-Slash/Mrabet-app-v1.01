@@ -7,6 +7,8 @@ import Visualizer from "./Visualizer";
 import AddProduct from "./AddProduct";
 import EconomaProduct from "./EconomaProduct";
 import Navbar from "./Navbar";
+import Plateformes from "./Plateformes";
+import { getCurrent } from "../Redux/Actions/Users_Action";
 
 function Economa() {
   const dispatch = useDispatch();
@@ -14,10 +16,11 @@ function Economa() {
   const [totalSum, setTotalSum] = useState(0);
 
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(getProducts(), getCurrent());
   }, [dispatch]);
 
   const products = useSelector((state) => state.Products.products);
+  const user = useSelector((state) => state.users.user);
 
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -43,18 +46,27 @@ function Economa() {
 
   useEffect(() => {
     calculateTotalSum();
-  }, [products]);
+  }, [products, calculateTotalSum]);
 
   return (
     <>
       <Navbar />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <Plateformes />
+      </div>
       <Row style={{ display: "flex" }}>
         <Col className="col-6">
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Card
               style={{
                 width: "90%",
-                height: "770px",
+                height: "900px",
                 overflow: "auto",
                 marginTop: "30px",
                 backgroundColor: "rgba(0, 126, 127, 0.75)",
@@ -77,7 +89,7 @@ function Economa() {
                   <br />
                   Total: {totalSum}
                 </Card.Title>
-                <AddProduct />
+                {user.Role === "User" ? null : <AddProduct />}
                 <div style={{ marginTop: "25px" }}>
                   {products.map((product) => (
                     <EconomaProduct product={product} key={product._id} />
@@ -99,7 +111,11 @@ function Economa() {
                     className="d-block w-100"
                     src={product.Facture}
                     onClick={() => handleImageClick(product.Facture)}
-                    style={{ cursor: "pointer" }}
+                    style={{
+                      cursor: "pointer",
+                      width: "300px",
+                      height: "400px",
+                    }}
                     alt={`Product ${product._id}`}
                   />
                   <Carousel.Caption>
@@ -111,6 +127,7 @@ function Economa() {
           </div>
         </Col>
       </Row>
+
       <Modal
         show={showModal}
         onHide={() => setShowModal(false)}
@@ -120,7 +137,7 @@ function Economa() {
         <Modal.Body>
           <img
             src={selectedImage}
-            alt="Selected Image"
+            alt="Selected "
             style={{
               width: "100%",
               height: "100%",

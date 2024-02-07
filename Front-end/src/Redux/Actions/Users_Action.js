@@ -24,7 +24,7 @@ export const Log_out = (Navigate) => {
 
 export const getCurrent = () => async (dispatch) => {
   const config = {
-    headers: { token: localStorage.getItem("token") },
+    headers: { token: localStorage.getItem("Token") },
   };
   try {
     await axios

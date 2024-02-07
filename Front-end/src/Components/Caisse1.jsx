@@ -10,15 +10,17 @@ import Visualizer from "./Visualizer";
 import CaisseEvent from "./CaisseEvent";
 import BankCaisse from "./BankCaisse";
 import Navbar from "./Navbar";
+import { getCurrent } from "../Redux/Actions/Users_Action";
 
 function Caisse1(caisse) {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCaisses1());
+    dispatch(getCaisses1(), getCurrent());
   }, [dispatch]);
 
   const Caisses = useSelector((state) => state.caisses1.caisses);
   const products = useSelector((state) => state.Products.products);
+  const user = useSelector((state) => state.users.user);
 
   return (
     <>
@@ -235,7 +237,7 @@ function Caisse1(caisse) {
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
-                <Modal1 caisse={caisse} />
+                {user.Role === "User" ? null : <Modal1 caisse={caisse} />}
               </Card.Body>
             </Card>
           ))}

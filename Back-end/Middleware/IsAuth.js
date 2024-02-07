@@ -2,8 +2,9 @@ const users = require("../Models/Users_model");
 const jwt = require("jsonwebtoken");
 exports.IsAuth = async (req, res, next) => {
   const Token = req.header("Token");
+  console.log(Token);
   try {
-    const secretKey = "You-Are-Sney3i";
+    const secretKey = "160592050199271021";
     const Verify = jwt.verify(Token, secretKey); //when we use jwt we always have to call the secretKey with the token
     if (!Verify) {
       res.status(400).send({ mesg: "you're not authorized" });

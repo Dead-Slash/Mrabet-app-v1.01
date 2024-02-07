@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { addProducts } from "../Redux/Actions/Achat_Action";
+import { getLiquide, updateLiquide } from "../Redux/Actions/Liquide_action";
 
 const AddProduct = () => {
   const [show, setShow] = useState(false);
@@ -12,12 +12,18 @@ const AddProduct = () => {
   const [Price, setPrice] = useState(0);
   const [Quantity, setQuantity] = useState(0);
   const [Facture, setFacture] = useState("");
+  const [Affectation, setAffectation] = useState("");
   const [Unity, setUnity] = useState("");
-  const [selectedOption, setSelectedOption] = useState("");
 
   const [temporaryProduct, setTemporaryProduct] = useState([]);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getLiquide());
+  }, [dispatch]);
+
+  const Liquide = useSelector((state) => state.Liquide.liquide);
 
   const product = useSelector((state) => state.Products.products);
 
@@ -35,7 +41,7 @@ const AddProduct = () => {
       Name: Name,
       Quantity: Quantity,
       Price: Price,
-      Unity: selectedOption,
+      Unity: Unity,
     };
     setTemporaryProduct([...temporaryProduct, newTemporaryProduct]);
     setName("");
@@ -46,10 +52,19 @@ const AddProduct = () => {
   const handleAddProduct = () => {
     const newProduct = {
       Facture: Facture,
+      Affectation: Affectation,
       Product: temporaryProduct,
     };
 
     dispatch(addProducts(newProduct));
+    console.log(temporaryProduct);
+    dispatch(
+      updateLiquide(Liquide[0]._id, {
+        LiquideDisponible:
+          Number(Liquide[0].LiquideDisponible) -
+          temporaryProduct.reduce((acc, e) => acc + Number(e.Price), 0),
+      })
+    );
     setName("");
     setQuantity(0);
     setPrice(0);
@@ -111,6 +126,18 @@ const AddProduct = () => {
                 accept="image/*"
               />
             </Form.Group>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => setAffectation(e.target.value)}
+              value={Affectation}
+            >
+              <option>Veuillez sélectionner l'affectation</option>
+              <option value="Cuisine">Cuisine</option>
+              <option value="Pizzeria">Pizzeria</option>
+              <option value="Pâtisserie">Pâtisserie</option>
+              <option value="Bar">Bar</option>
+              <option value="Commune">Commune</option>
+            </Form.Select>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label style={{ color: "#FFF7D6", fontSize: "25px" }}>
                 Nom du produit
@@ -139,8 +166,8 @@ const AddProduct = () => {
             </Form.Group>
             <Form.Select
               aria-label="Default select example"
-              onChange={(e) => setSelectedOption(e.target.value)}
-              value={selectedOption}
+              onChange={(e) => setUnity(e.target.value)}
+              value={Unity}
             >
               <option>Veuillez sélectionner le type d'unité</option>
               <option value="Lt">Litre</option>

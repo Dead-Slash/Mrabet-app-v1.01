@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const ProductSchema = new mongoose.Schema(
   {
     Facture: { type: String },
+    Affectation: { type: String },
     Product: [
       {
         Name: { type: String, required: true },

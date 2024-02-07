@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Caisse1Schema = new mongoose.Schema({
   Title: { type: String, required: true },
   Recette: [{ montant: Number, date: String }],
+  LiquideDisponible: { type: Number },
   Liquide: { montantLiquide: Number },
   Cheques: [{ NumeroDeCheque: Number, MontantDeCheque: Number }],
   TPEs: [{ NumeroDeTransaction: Number, MontantDeTransaction: Number }],

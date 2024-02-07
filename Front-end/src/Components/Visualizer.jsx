@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCaisses1 } from "../Redux/Actions/Caisse1_Action";
 import { getCaissesEvent } from "../Redux/Actions/CaisseEvent_Actions";
 import { getBank_Caisses } from "../Redux/Actions/Bank_Caisses_Action";
+import { getLiquide } from "../Redux/Actions/Liquide_action";
 
 function Visualizer({ totalSum }) {
   const dispatch = useDispatch();
@@ -20,13 +21,10 @@ function Visualizer({ totalSum }) {
     dispatch(getCaisses1());
     dispatch(getCaissesEvent());
     dispatch(getBank_Caisses());
+    dispatch(getLiquide());
   }, [dispatch]);
 
-  useEffect(() => {
-    // Logic to get totalSum from Economa component
-    const newTotalSumFromEconoma = parseFloat(totalSum) || 0;
-    setTotalSumFromEconoma(newTotalSumFromEconoma);
-  }, [totalSum]);
+  const Liquide = useSelector((state) => state.Liquide.liquide);
 
   useEffect(() => {
     // Ensure default values are set to 0 if the data is not available
@@ -218,7 +216,7 @@ function Visualizer({ totalSum }) {
             }}
           >
             {" "}
-            <h1 id="liquideDisponibleValue">{LiquideDisponibleEnCaisse}</h1>
+            <h1 id="liquideDisponibleValue">{Liquide[0]?.LiquideDisponible}</h1>
           </Card.Text>
         </Card.Body>
       </Card>
