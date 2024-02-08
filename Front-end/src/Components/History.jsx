@@ -7,6 +7,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { Accordion, Card, Col, Row } from "react-bootstrap";
 import VisualizerHistory from "./VisualizerHistory";
 import EconomaProduct from "./EconomaProduct";
+import Navbar from "./Navbar";
 
 const History = () => {
   const [date, setDate] = useState("");
@@ -21,6 +22,7 @@ const History = () => {
 
   return (
     <>
+      <Navbar />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           style={{

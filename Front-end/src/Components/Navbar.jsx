@@ -279,13 +279,10 @@ export default function Navbar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="flex flex-1 items-center  justify-center sm:items-stretch sm:justify-start">
                 <div className="hidden sm:ml-6 sm:block pl-0">
                   <div className="flex space-x-12">
-                    <div
-                      id="navbar-text"
-                      className=" hover:text-white rounded-md  py-2 text-sm font-medium mt-2.5 ml-0"
-                    >
+                    <div className=" hover:text-white rounded-md  py-2 l  mt-2.5 ml-0">
                       {window.location.pathname === "/Caisses1" ? (
                         <Link
                           to="/Caisses1"
@@ -293,6 +290,7 @@ export default function Navbar() {
                             textDecoration: "none",
                             transition: "all 500ms",
                             color: "hwb(41 21% 27%)",
+                            fontWeight: "700",
                           }}
                         >
                           {" "}
@@ -304,14 +302,11 @@ export default function Navbar() {
                           style={{ textDecoration: "none", color: "inherit" }}
                         >
                           {" "}
-                          <h6>Caisses</h6>
+                          <h6 id="navbar-text">Caisses</h6>
                         </Link>
                       )}
                     </div>
-                    <div
-                      className=" hover:text-white rounded-md px-3 py-2 text-sm mt-2.5 "
-                      id="navbar-text"
-                    >
+                    <div className=" hover:text-white rounded-md px-3 py-2  mt-2.5 ">
                       {window.location.pathname === "/Economa" ? (
                         <Link
                           to="/Economa"
@@ -319,10 +314,11 @@ export default function Navbar() {
                             textDecoration: "none",
                             transition: "all 500ms",
                             color: "hwb(41 21% 27%)",
+                            fontSize: "20px",
                           }}
                         >
                           {" "}
-                          <h6>Achat</h6>
+                          <h6>Dépenses</h6>
                         </Link>
                       ) : (
                         <Link
@@ -330,7 +326,31 @@ export default function Navbar() {
                           style={{ textDecoration: "none", color: "inherit" }}
                         >
                           {" "}
-                          <h6>Achat</h6>
+                          <h6 id="navbar-text">Dépenses</h6>
+                        </Link>
+                      )}
+                    </div>
+                    <div className=" hover:text-white rounded-md  py-2 l  mt-2.5 ml-0">
+                      {window.location.pathname === "/history" ? (
+                        <Link
+                          to="/history"
+                          style={{
+                            textDecoration: "none",
+                            transition: "all 500ms",
+                            color: "hwb(41 21% 27%)",
+                            fontWeight: "700",
+                          }}
+                        >
+                          {" "}
+                          <h6>Historique</h6>
+                        </Link>
+                      ) : (
+                        <Link
+                          to="/history"
+                          style={{ textDecoration: "none", color: "inherit" }}
+                        >
+                          {" "}
+                          <h6 id="navbar-text">Historique</h6>
                         </Link>
                       )}
                     </div>
@@ -338,25 +358,30 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <div>
-                  <div /*id="navbar-text"*/ className="text-white mt-2.5">
+                {/* Profile dropdown */}
+                <Menu as="div" className="relative  mr-0 flex  ">
+                  <div
+                    /*id="navbar-text"*/ style={{
+                      fontFamily: "Courier New",
+                      color: "white",
+                      marginTop: "20px",
+                      marginRight: "70px",
+                    }}
+                  >
                     <h6>Signed in as: {user.Name}</h6>
                   </div>
-                </div>
-
-                {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-9 flex mt2.5 ">
                   <a
                     style={{
                       textDecoration: "none",
                       fontFamily: "Courier New",
+                      backgroundColor: "none",
                     }}
                     href="#"
                     id="navbar-text"
                     className=" block px-4 py-2 text-sm  mt-2.5"
                   >
                     <h4>
-                      <ImPrinter onClick={handlePrint} title="Print Resume" />
+                      <ImPrinter onClick={handlePrint} />
                     </h4>
                   </a>
                   <a
@@ -373,6 +398,7 @@ export default function Navbar() {
                       <ImExit />
                     </h4>
                   </a>
+                           
                 </Menu>
               </div>
             </div>
