@@ -56,14 +56,27 @@ const History = () => {
           .map((e) => (
             <div
               style={{
-                marginTop: "100px",
+                marginTop: "40px",
                 display: "flex",
                 justifyContent: "center",
                 flexDirection: "column",
               }}
             >
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Row>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "100%",
+                }}
+              >
+                <Row
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: "2%",
+                  }}
+                >
                   <VisualizerHistory
                     caisses1={e.caisses1}
                     caissesEvent={e.caisseEvent}
@@ -75,14 +88,15 @@ const History = () => {
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-around",
+                  justifyContent: "center",
+                  gap: "2%",
                 }}
               >
                 {e.caisses1.map((caisse) => (
                   <Card
                     key={caisse._id}
                     style={{
-                      width: "28rem",
+                      width: "22%",
                       marginTop: "30px",
                       backgroundColor: "rgba(0, 126, 127, 0.75)",
                       borderRadius: "10px",
@@ -288,16 +302,16 @@ const History = () => {
               </div>{" "}
               <div
                 style={{
+                  width: "100%",
                   display: "flex",
                   justifyContent: "center",
-                  gap: "1%",
+                  gap: "2%",
                 }}
               >
                 {/* CAISSE EVENT HISTORIQUE */}
-
                 <Card
                   style={{
-                    width: "57.875rem",
+                    width: "45%",
                     marginTop: "30px",
                     backgroundColor: "rgba(0, 126, 127, 0.75)",
                     borderRadius: "10px",
@@ -519,7 +533,7 @@ const History = () => {
 
                 <Card
                   style={{
-                    width: "57.875rem",
+                    width: "45%",
                     marginTop: "30px",
                     backgroundColor: "rgba(0, 126, 127, 0.75)",
                     borderRadius: "10px",

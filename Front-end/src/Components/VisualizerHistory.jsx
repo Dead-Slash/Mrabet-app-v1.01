@@ -27,21 +27,11 @@ function VisualizerHistory({
     ) + caissesEvent.TPEs.reduce((acc, e) => acc + e.MontantDeTransaction, 0);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        gap: "30px",
-        flexWrap: "wrap",
-        marginBottom: "30px",
-        marginTop: "-80px",
-      }}
-    >
+    <>
       {/* Card mta3 totale des recette */}
       <Card
         style={{
-          width: "28rem",
-
+          width: "22%",
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
           height: "150px",
@@ -60,7 +50,7 @@ function VisualizerHistory({
               fontWeight: "700",
             }}
           >
-            Total des recette de caisse
+            Total des recettes
           </Card.Title>
           <Card.Text
             style={{
@@ -79,7 +69,7 @@ function VisualizerHistory({
       {/* Card mta3 total des liquide en caisse */}
       <Card
         style={{
-          width: "28rem",
+          width: "22%",
           marginTop: "10px",
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
@@ -98,7 +88,7 @@ function VisualizerHistory({
               fontWeight: "700",
             }}
           >
-            Liquide disponible en caisse
+            Liquide disponible
           </Card.Title>
           <Card.Text
             style={{
@@ -117,7 +107,7 @@ function VisualizerHistory({
       {/* Card mta3 total des Cheques */}
       <Card
         style={{
-          width: "28rem",
+          width: "22%",
           marginTop: "10px",
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
@@ -155,7 +145,7 @@ function VisualizerHistory({
       {/* Card mta3 total des transaction tpe */}
       <Card
         style={{
-          width: "28rem",
+          width: "22%",
           marginTop: "10px",
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
@@ -189,7 +179,7 @@ function VisualizerHistory({
           </Card.Text>
         </Card.Body>
       </Card>
-    </div>
+    </>
   );
 }
 

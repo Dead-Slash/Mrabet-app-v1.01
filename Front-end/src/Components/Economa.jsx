@@ -55,20 +55,38 @@ function Economa() {
         style={{
           display: "flex",
           justifyContent: "center",
-          flexDirection: "column",
+          flexDirection: "row",
+          gap: "2%",
         }}
       >
         <Plateformes />
       </div>
-      <Row style={{ display: "flex" }}>
+      <div
+        style={{
+          marginTop: "85px",
+          display: "flex",
+          justifyContent: "center",
+          width: "100%",
+        }}
+      >
+        <Visualizer />
+      </div>
+      <Row style={{ display: "flex", width: "100%" }}>
         <Col className="col-6">
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "row",
+              gap: "2%",
+            }}
+          >
             <Card
               style={{
-                width: "90%",
+                width: "95%",
                 height: "900px",
                 overflow: "auto",
-                marginTop: "30px",
+
                 backgroundColor: "rgba(0, 126, 127, 0.75)",
                 borderRadius: "10px",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
@@ -100,9 +118,6 @@ function Economa() {
           </div>
         </Col>
         <Col className="col-6">
-          <div style={{ marginTop: "103px" }}>
-            <Visualizer totalSum={totalSum} />
-          </div>
           <div style={{ marginTop: "10px" }}>
             <Carousel>
               {products.map((product) => (
@@ -114,7 +129,8 @@ function Economa() {
                     style={{
                       cursor: "pointer",
                       width: "300px",
-                      height: "400px",
+                      height: "100%",
+                      borderRadius: "10px",
                     }}
                     alt={`Product ${product._id}`}
                   />

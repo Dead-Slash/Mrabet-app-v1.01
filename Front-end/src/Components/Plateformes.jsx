@@ -71,20 +71,11 @@ const Plateformes = () => {
     );
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        gap: "20px",
-        flexWrap: "wrap",
-        marginBottom: "0px",
-        marginTop: "25px",
-      }}
-    >
+    <>
       {/* Card mta3 totale des Achat Cuisine */}
       <Card
         style={{
-          width: "28rem",
+          width: "22%",
 
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
@@ -123,7 +114,7 @@ const Plateformes = () => {
       {/* Card mta3 totale des Achat Pizzeria */}
       <Card
         style={{
-          width: "28rem",
+          width: "22%",
 
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
@@ -162,7 +153,7 @@ const Plateformes = () => {
       {/* Card mta3 totale des Achat Pâtisserie */}
       <Card
         style={{
-          width: "28rem",
+          width: "22%",
 
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
@@ -201,7 +192,7 @@ const Plateformes = () => {
       {/* Card mta3 totale des Achat BAR */}
       <Card
         style={{
-          width: "28rem",
+          width: "22%",
 
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
@@ -236,7 +227,7 @@ const Plateformes = () => {
           </Card.Text>
         </Card.Body>
       </Card>
-    </div>
+    </>
   );
 };
 

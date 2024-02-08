@@ -9,8 +9,8 @@ import { getLiquide, updateLiquide } from "../Redux/Actions/Liquide_action";
 const AddProduct = () => {
   const [show, setShow] = useState(false);
   const [Name, setName] = useState("");
-  const [Price, setPrice] = useState(0);
-  const [Quantity, setQuantity] = useState(0);
+  const [Price, setPrice] = useState("");
+  const [Quantity, setQuantity] = useState("");
   const [Facture, setFacture] = useState("");
   const [Affectation, setAffectation] = useState("");
   const [Unity, setUnity] = useState("");
@@ -66,8 +66,8 @@ const AddProduct = () => {
       })
     );
     setName("");
-    setQuantity(0);
-    setPrice(0);
+    setQuantity("");
+    setPrice("");
     setFacture("");
     setTemporaryProduct([]);
     handleClose();

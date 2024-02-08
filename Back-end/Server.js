@@ -36,7 +36,7 @@ app.use("/history", HistoryRouter);
 const dispatchHistory = new Date().getHours();
 
 const addHistory = async () => {
-  if (dispatchHistory === 23) {
+  if (dispatchHistory === 16) {
     console.log(dispatchHistory);
     const caisse1 = await Caisses.find();
     const caisseEvent = await CaissesEvent.findById("65b27573340ca3038c4836ef");
@@ -98,9 +98,9 @@ const addHistory = async () => {
     await Bank_caisse_model.findByIdAndUpdate("65b65b69e5cbc78b66f1c66a", {
       $set: { Montant: 0, Motif: "", Image: "" },
     });
-    await Caisses.findByIdAndUpdate("65b27573340ca3038c4836ef", {
+    await CaissesEvent.findByIdAndUpdate("65b27573340ca3038c4836ef", {
       $set: {
-        Rectte: [],
+        Recette: [],
         Liquide: { montantLiquide: 0 },
         Cheques: [],
         TPEs: [],

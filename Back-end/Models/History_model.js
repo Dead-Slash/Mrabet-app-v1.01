@@ -31,6 +31,7 @@ const HistorySchema = new mongoose.Schema(
     AchatProduct: [
       {
         Facture: { type: String },
+        Affectation: { type: String },
         Product: [
           {
             Name: { type: String },

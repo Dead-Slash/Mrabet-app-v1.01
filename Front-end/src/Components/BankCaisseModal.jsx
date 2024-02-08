@@ -9,8 +9,8 @@ import { updateBankCaisse } from "../Redux/Actions/Bank_Caisses_Action";
 
 const BankCaisseModal = ({ caisse }) => {
   const [show, setShow] = useState(false);
-  const [Montant, setMontant] = useState(0);
-  const [Motif, setMotif] = useState(0);
+  const [Montant, setMontant] = useState("");
+  const [Motif, setMotif] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -21,8 +21,8 @@ const BankCaisseModal = ({ caisse }) => {
 
   const handleUdateBankCaisse = () => {
     const updatedCaisse = {
-      Montant: Montant, // Corrected property name
-      Motif: Motif, // Corrected property name
+      Montant: Montant,
+      Motif: Motif,
     };
 
     dispatch(updateBankCaisse(caisse._id, updatedCaisse)).then(() => {

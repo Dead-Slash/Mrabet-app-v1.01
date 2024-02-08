@@ -31,17 +31,25 @@ function Caisse1(caisse) {
           justifyContent: "center",
           marginTop: "100px",
           marginBottom: "-50px",
+          width: "100%",
         }}
       >
         <Visualizer />
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Row style={{ gap: "30px" }}>
+      <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+        <Row
+          style={{
+            gap: "2%",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           {Caisses.map((caisse) => (
             <Card
               key={caisse._id}
               style={{
-                width: "28rem",
+                width: "22%",
                 marginTop: "30px",
                 backgroundColor: "rgba(0, 126, 127, 0.75)",
                 borderRadius: "10px",
@@ -250,7 +258,15 @@ function Caisse1(caisse) {
           justifyContent: "center",
         }}
       >
-        <div style={{ display: "flex", gap: "57px", marginBottom: "20px" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "2%",
+            marginBottom: "20px",
+            width: "100%",
+          }}
+        >
           <CaisseEvent />
           <BankCaisse />
         </div>

@@ -8,12 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateCaisseEvent } from "../Redux/Actions/CaisseEvent_Actions";
 
 const ModalEvent = ({ caisse }) => {
-  const [montant, setMontant] = useState(0);
-  const [montantLiquide, setmontantLiquide] = useState(0);
-  const [NumeroDeCheque, setNumeroDeCheque] = useState(0);
-  const [MontantDeCheque, setMontantDeCheque] = useState(0);
-  const [NumeroDeTransaction, setNumeroDeTransaction] = useState(0);
-  const [MontantDeTransaction, setMontantDeTransaction] = useState(0);
+  const [montant, setMontant] = useState("");
+  const [montantLiquide, setmontantLiquide] = useState("");
+  const [NumeroDeCheque, setNumeroDeCheque] = useState("");
+  const [MontantDeCheque, setMontantDeCheque] = useState("");
+  const [NumeroDeTransaction, setNumeroDeTransaction] = useState("");
+  const [MontantDeTransaction, setMontantDeTransaction] = useState("");
 
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -63,8 +63,8 @@ const ModalEvent = ({ caisse }) => {
           TPEs: [...caisse.TPEs, { NumeroDeTransaction, MontantDeTransaction }],
         })
       );
-      setMontantDeTransaction(0);
-      setNumeroDeTransaction(0);
+      setMontantDeTransaction("");
+      setNumeroDeTransaction("");
     }
   };
 

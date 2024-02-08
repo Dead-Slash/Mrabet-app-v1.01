@@ -6,7 +6,7 @@ import { getCaissesEvent } from "../Redux/Actions/CaisseEvent_Actions";
 import { getBank_Caisses } from "../Redux/Actions/Bank_Caisses_Action";
 import { getLiquide } from "../Redux/Actions/Liquide_action";
 
-function Visualizer({ totalSum }) {
+function Visualizer() {
   const dispatch = useDispatch();
   const caisses1 = useSelector((state) => state.caisses1.caisses);
   const caissesEvent = useSelector((state) => state.caissesEvent.caisses);
@@ -136,17 +136,17 @@ function Visualizer({ totalSum }) {
       style={{
         display: "flex",
         justifyContent: "center",
-        gap: "30px",
+        gap: "2%",
         flexWrap: "wrap",
         marginBottom: "30px",
         marginTop: "-80px",
+        width: "100%",
       }}
     >
       {/* Card mta3 totale des recette */}
       <Card
         style={{
-          width: "28rem",
-
+          width: "22%",
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
           height: "150px",
@@ -163,9 +163,10 @@ function Visualizer({ totalSum }) {
               color: "#FFF7D6",
               fontSize: "30px",
               fontWeight: "700",
+              textAlign: "center",
             }}
           >
-            Total des recette de caisse
+            Total des recettes
           </Card.Title>
           <Card.Text
             style={{
@@ -185,7 +186,7 @@ function Visualizer({ totalSum }) {
       {/* Card mta3 total des liquide en caisse */}
       <Card
         style={{
-          width: "28rem",
+          width: "22%",
           marginTop: "10px",
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
@@ -198,13 +199,14 @@ function Visualizer({ totalSum }) {
           <Card.Title
             style={{
               display: "flex",
+              textAlign: "center",
               justifyContent: "center",
               color: "#FFF7D6",
               fontSize: "30px",
               fontWeight: "700",
             }}
           >
-            Liquide disponible en caisse
+            Liquide disponible
           </Card.Title>
           <Card.Text
             style={{
@@ -224,7 +226,7 @@ function Visualizer({ totalSum }) {
       {/* Card mta3 total des Cheques */}
       <Card
         style={{
-          width: "28rem",
+          width: "22%",
           marginTop: "10px",
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
@@ -241,6 +243,7 @@ function Visualizer({ totalSum }) {
               color: "#FFF7D6",
               fontSize: "30px",
               fontWeight: "700",
+              textAlign: "center",
             }}
           >
             Total des Cheques
@@ -263,7 +266,7 @@ function Visualizer({ totalSum }) {
       {/* Card mta3 total des transaction tpe */}
       <Card
         style={{
-          width: "28rem",
+          width: "22%",
           marginTop: "10px",
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
@@ -280,6 +283,7 @@ function Visualizer({ totalSum }) {
               color: "#FFF7D6",
               fontSize: "30px",
               fontWeight: "700",
+              textAlign: "center",
             }}
           >
             Total des transaction TPE
