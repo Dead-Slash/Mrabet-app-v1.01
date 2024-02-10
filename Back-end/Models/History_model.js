@@ -31,13 +31,18 @@ const HistorySchema = new mongoose.Schema(
     AchatProduct: [
       {
         Facture: { type: String },
-        Affectation: { type: String },
         Product: [
           {
             Name: { type: String },
             Quantity: { type: Number },
             Price: { type: Number },
+            UnitPrice: { type: Number },
             Unity: { type: String },
+            Affectation: { type: String },
+            Cuisine: { type: Number },
+            Pizzeria: { type: Number },
+            Pâtisserie: { type: Number },
+            Bar: { type: Number },
           },
         ],
       },

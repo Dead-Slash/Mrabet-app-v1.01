@@ -1,62 +1,87 @@
-import React from "react";
-import Card from "react-bootstrap/Card";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../Redux/Actions/Achat_Action";
+import EconomaProduct from "./EconomaProduct";
+import { Card } from "react-bootstrap";
 
-function VisualizerHistory({
-  caisses1,
-  caissesEvent,
-  bankCaisses,
-  LiquideDisponible,
-}) {
-  const totalCaisses1 = caisses1.reduce(
+const PlateformesHistory = ({ products }) => {
+  console.log(products);
+  const TotalCuisineProducts = products.reduce(
     (acc, e) =>
       acc +
-      e.Recette?.reduce(
-        (acc, e) => acc + (e.montant === null ? 0 : e.montant),
+      e.Product.filter(
+        (product) =>
+          product.Affectation === "Cuisine" || product.Affectation === "Commune"
+      ).reduce(
+        (acc, product) =>
+          acc +
+          (product.Affectation === "Cuisine"
+            ? product.Price
+            : product.UnitPrice * product.Cuisine),
         0
       ),
     0
   );
-  console.log(totalCaisses1);
-  const totalCheques =
-    caisses1.reduce(
-      (acc, e) =>
-        acc +
-        e.Cheques.reduce(
-          (acc, e) =>
-            acc + (e.MontantDeCheque === null ? 0 : e.MontantDeCheque),
-          0
-        ),
-      0
-    ) +
-    caissesEvent.Cheques.reduce(
-      (acc, e) => acc + (e.MontantDeCheque === null ? 0 : e.MontantDeCheque),
-      0
-    );
 
-  const totalTpe =
-    caisses1.reduce(
-      (acc, e) =>
-        acc +
-        e.TPEs.reduce(
-          (acc, e) =>
-            acc +
-            (e.MontantDeTransaction === null ? 0 : e.MontantDeTransaction),
-          0
-        ),
-      0
-    ) +
-    caissesEvent.TPEs.reduce(
-      (acc, e) =>
-        acc + (e.MontantDeTransaction === null ? 0 : e.MontantDeTransaction),
-      0
-    );
+  const TotalPizzeriaProducts = products.reduce(
+    (acc, e) =>
+      acc +
+      e.Product.filter(
+        (product) =>
+          product.Affectation === "Pizzeria" ||
+          product.Affectation === "Commune"
+      ).reduce(
+        (acc, product) =>
+          acc +
+          (product.Affectation === "Pizzeria"
+            ? product.Price
+            : product.UnitPrice * product.Pizzeria),
+        0
+      ),
+    0
+  );
 
+  const TotalPâtisserieProducts = products.reduce(
+    (acc, e) =>
+      acc +
+      e.Product.filter(
+        (product) =>
+          product.Affectation === "Pâtisserie" ||
+          product.Affectation === "Commune"
+      ).reduce(
+        (acc, product) =>
+          acc +
+          (product.Affectation === "Pâtisserie"
+            ? product.Price
+            : product.UnitPrice * product.Pâtisserie),
+        0
+      ),
+    0
+  );
+
+  const TotalBarProducts = products.reduce(
+    (acc, e) =>
+      acc +
+      e.Product.filter(
+        (product) =>
+          product.Affectation === "Bar" || product.Affectation === "Commune"
+      ).reduce(
+        (acc, product) =>
+          acc +
+          (product.Affectation === "Bar"
+            ? product.Price
+            : product.UnitPrice * product.Bar),
+        0
+      ),
+    0
+  );
   return (
     <>
-      {/* Card mta3 totale des recette */}
+      {/* Card mta3 totale des Achat Cuisine */}
       <Card
         style={{
           width: "22%",
+
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
           height: "150px",
@@ -71,37 +96,35 @@ function VisualizerHistory({
               display: "flex",
               justifyContent: "center",
               color: "#FFF7D6",
-              fontSize: "30px",
+              fontSize: "35px",
               fontWeight: "700",
             }}
           >
-            Total des recettes
+            Cuisine
           </Card.Title>
           <Card.Text
             style={{
               display: "flex",
               justifyContent: "center",
               color: "#FFF7D6",
-              fontSize: "25px",
+              fontSize: "30px",
               fontWeight: "bold",
             }}
           >
-            {totalCaisses1 +
-              (isNaN(caissesEvent.Recette[0]?.montant)
-                ? 0
-                : caissesEvent.Recette[0]?.montant)}
+            {TotalCuisineProducts.toFixed(3)}
           </Card.Text>
         </Card.Body>
       </Card>
 
-      {/* Card mta3 total des liquide en caisse */}
+      {/* Card mta3 totale des Achat Pizzeria */}
       <Card
         style={{
           width: "22%",
-          marginTop: "10px",
+
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
           height: "150px",
+          marginTop: "10px",
           marginBottom: "20px",
         }}
         className="Card"
@@ -112,34 +135,35 @@ function VisualizerHistory({
               display: "flex",
               justifyContent: "center",
               color: "#FFF7D6",
-              fontSize: "30px",
+              fontSize: "35px",
               fontWeight: "700",
             }}
           >
-            Liquide disponible
+            Pizzeria
           </Card.Title>
           <Card.Text
             style={{
               display: "flex",
               justifyContent: "center",
               color: "#FFF7D6",
-              fontSize: "25px",
+              fontSize: "30px",
               fontWeight: "bold",
             }}
           >
-            {LiquideDisponible}
+            {TotalPizzeriaProducts.toFixed(3)}
           </Card.Text>
         </Card.Body>
       </Card>
 
-      {/* Card mta3 total des Cheques */}
+      {/* Card mta3 totale des Achat Pâtisserie */}
       <Card
         style={{
           width: "22%",
-          marginTop: "10px",
+
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
           height: "150px",
+          marginTop: "10px",
           marginBottom: "20px",
         }}
         className="Card"
@@ -150,34 +174,35 @@ function VisualizerHistory({
               display: "flex",
               justifyContent: "center",
               color: "#FFF7D6",
-              fontSize: "30px",
+              fontSize: "35px",
               fontWeight: "700",
             }}
           >
-            Total des Cheques
+            Pâtisserie
           </Card.Title>
           <Card.Text
             style={{
               display: "flex",
               justifyContent: "center",
               color: "#FFF7D6",
-              fontSize: "25px",
+              fontSize: "30px",
               fontWeight: "bold",
             }}
           >
-            {totalCheques}
+            {TotalPâtisserieProducts.toFixed(3)}
           </Card.Text>
         </Card.Body>
       </Card>
 
-      {/* Card mta3 total des transaction tpe */}
+      {/* Card mta3 totale des Achat BAR */}
       <Card
         style={{
           width: "22%",
-          marginTop: "10px",
+
           backgroundColor: "rgba(0, 126, 127, 0.75)",
           borderRadius: "10px",
           height: "150px",
+          marginTop: "10px",
           marginBottom: "20px",
         }}
         className="Card"
@@ -188,27 +213,27 @@ function VisualizerHistory({
               display: "flex",
               justifyContent: "center",
               color: "#FFF7D6",
-              fontSize: "30px",
+              fontSize: "35px",
               fontWeight: "700",
             }}
           >
-            Total des transaction TPE
+            Bar
           </Card.Title>
           <Card.Text
             style={{
               display: "flex",
               justifyContent: "center",
               color: "#FFF7D6",
-              fontSize: "25px",
+              fontSize: "30px",
               fontWeight: "bold",
             }}
           >
-            {totalTpe}
+            {TotalBarProducts.toFixed(3)}
           </Card.Text>
         </Card.Body>
       </Card>
     </>
   );
-}
+};
 
-export default VisualizerHistory;
+export default PlateformesHistory;

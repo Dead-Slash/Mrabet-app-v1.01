@@ -8,6 +8,7 @@ import { Accordion, Card, Col, Row } from "react-bootstrap";
 import VisualizerHistory from "./VisualizerHistory";
 import EconomaProduct from "./EconomaProduct";
 import Navbar from "./Navbar";
+import PlateformesHistory from "./PlateformesHistory";
 
 const History = () => {
   const [date, setDate] = useState("");
@@ -85,6 +86,7 @@ const History = () => {
                     bankCaisses={e.Bankcaisse}
                     LiquideDisponible={e.LiquideDisponible.LiquideDisponible}
                   />
+                  <PlateformesHistory products={e.AchatProduct} />
                 </Row>
               </div>
               <div

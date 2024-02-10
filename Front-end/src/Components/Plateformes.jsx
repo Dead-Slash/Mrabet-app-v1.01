@@ -12,64 +12,77 @@ const Plateformes = () => {
   }, [dispatch]);
 
   const products = useSelector((state) => state.Products.products);
+  console.log(products);
 
-  const TotalCuisineProducts = products
-    .filter(
-      (product) =>
-        product.Affectation === "Cuisine" || product.Affectation === "Commune"
-    )
-    .reduce(
-      (acc, product) =>
-        acc +
-        (product.Affectation === "Cuisine"
-          ? product.Product.reduce((acc, e) => acc + e.Price, 0)
-          : product.Product.reduce((acc, e) => acc + e.Price, 0) / 4),
-      0
-    );
+  const TotalCuisineProducts = products.reduce(
+    (acc, e) =>
+      acc +
+      e.Product.filter(
+        (product) =>
+          product.Affectation === "Cuisine" || product.Affectation === "Commune"
+      ).reduce(
+        (acc, product) =>
+          acc +
+          (product.Affectation === "Cuisine"
+            ? product.Price
+            : product.UnitPrice * product.Cuisine),
+        0
+      ),
+    0
+  );
 
-  const TotalPizzeriaProducts = products
-    .filter(
-      (product) =>
-        product.Affectation === "Pizzeria" || product.Affectation === "Commune"
-    )
-    .reduce(
-      (acc, product) =>
-        acc +
-        (product.Affectation === "Pizzeria"
-          ? product.Product.reduce((acc, e) => acc + e.Price, 0)
-          : product.Product.reduce((acc, e) => acc + e.Price, 0) / 4),
-      0
-    );
+  const TotalPizzeriaProducts = products.reduce(
+    (acc, e) =>
+      acc +
+      e.Product.filter(
+        (product) =>
+          product.Affectation === "Pizzeria" ||
+          product.Affectation === "Commune"
+      ).reduce(
+        (acc, product) =>
+          acc +
+          (product.Affectation === "Pizzeria"
+            ? product.Price
+            : product.UnitPrice * product.Pizzeria),
+        0
+      ),
+    0
+  );
 
-  const TotalPâtisserieProducts = products
-    .filter(
-      (product) =>
-        product.Affectation === "Pâtisserie" ||
-        product.Affectation === "Commune"
-    )
-    .reduce(
-      (acc, product) =>
-        acc +
-        (product.Affectation === "Pâtisserie"
-          ? product.Product.reduce((acc, e) => acc + e.Price, 0)
-          : product.Product.reduce((acc, e) => acc + e.Price, 0) / 4),
-      0
-    );
+  const TotalPâtisserieProducts = products.reduce(
+    (acc, e) =>
+      acc +
+      e.Product.filter(
+        (product) =>
+          product.Affectation === "Pâtisserie" ||
+          product.Affectation === "Commune"
+      ).reduce(
+        (acc, product) =>
+          acc +
+          (product.Affectation === "Pâtisserie"
+            ? product.Price
+            : product.UnitPrice * product.Pâtisserie),
+        0
+      ),
+    0
+  );
 
-  const TotalBarProducts = products
-    .filter(
-      (product) =>
-        product.Affectation === "Bar" || product.Affectation === "Commune"
-    )
-    .reduce(
-      (acc, product) =>
-        acc +
-        (product.Affectation === "Bar"
-          ? product.Product.reduce((acc, e) => acc + e.Price, 0)
-          : product.Product.reduce((acc, e) => acc + e.Price, 0) / 4),
-      0
-    );
-
+  const TotalBarProducts = products.reduce(
+    (acc, e) =>
+      acc +
+      e.Product.filter(
+        (product) =>
+          product.Affectation === "Bar" || product.Affectation === "Commune"
+      ).reduce(
+        (acc, product) =>
+          acc +
+          (product.Affectation === "Bar"
+            ? product.Price
+            : product.UnitPrice * product.Bar),
+        0
+      ),
+    0
+  );
   return (
     <>
       {/* Card mta3 totale des Achat Cuisine */}
